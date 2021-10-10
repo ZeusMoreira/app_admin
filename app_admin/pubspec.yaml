@@ -66,6 +66,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/logo_pato_burguer.png
+    - assets/images/pato-bacon_solo.png
 
   fonts:
     - family: Roboto
