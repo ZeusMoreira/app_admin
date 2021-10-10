@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import '../authentication_service.dart';
-import '../home_page.dart';
+import '../senha/authentication_service.dart';
+import '../senha/home_page.dart';
 
-class LoginCentralizado extends StatelessWidget {
+
+class LoginCentralizado extends StatefulWidget {
+  const LoginCentralizado({Key? key}) : super(key: key);
+
+  @override
+  _LoginCentralizadoState createState() => _LoginCentralizadoState();
+}
+
+class _LoginCentralizadoState extends State<LoginCentralizado> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -11,22 +19,22 @@ class LoginCentralizado extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 309,
-        height: 340,
+        width: MediaQuery.of(context).size.width * 0.85,
+        height: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
         ),
         child: Column(children: [
           Padding(
-              padding: const EdgeInsets.only(left: 27, right: 220.0, top: 49, bottom: 0),
+              padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.5, top: MediaQuery.of(context).size.height * 0.08),
               child: Container(
-                width: 62,
-                height: 24,
-                child: const Text(
+                width: MediaQuery.of(context).size.width * 0.18,
+                height: MediaQuery.of(context).size.height * 0.05,
+                child: Text(
                   'Login',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: MediaQuery.of(context).size.width * 0.048,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
@@ -35,12 +43,12 @@ class LoginCentralizado extends StatelessWidget {
               )
           ),
 
-          SizedBox(height: 21.44),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.025),
           Padding(
-            padding: const EdgeInsets.only(left: 19.9, right: 28.0),
+            padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03, ),
             child: Container(
-              height: 41.89,
-              width: 261.1,
+              height: MediaQuery.of(context).size.height * 0.058,
+              width: MediaQuery.of(context).size.width * 0.66,
               child: TextField(
                   controller: emailController,
                   keyboardType: TextInputType.text,
@@ -52,14 +60,14 @@ class LoginCentralizado extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(
-            height: 18.0,
+          SizedBox(
+            height:MediaQuery.of(context).size.height * 0.025,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 19.9, right: 28.0),
+            padding:EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03,),
             child: Container(
-              height: 41.89,
-              width: 261.1,
+              height: MediaQuery.of(context).size.height * 0.058,
+              width: MediaQuery.of(context).size.width * 0.66,
               child: TextField(
                   controller: passwordController,
                   keyboardType: TextInputType.text,
@@ -71,18 +79,18 @@ class LoginCentralizado extends StatelessWidget {
                   )),
             ),
           ),
-          const SizedBox(height: 14.67),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
           Padding(
-            padding: const EdgeInsets.only(left: 158, right: 31),
+            padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.4, right: MediaQuery.of(context).size.width * 0.1,),
             child: Container(
               alignment: Alignment.topRight,
               child: GestureDetector(
-                  child: const Text(
+                  child: Text(
                     "Esqueceu a senha?",
                     softWrap: false,
                     style: TextStyle(
                       decoration: TextDecoration.underline,
-                      fontSize: 13,
+                      fontSize:  MediaQuery.of(context).size.width * 0.035,
                       fontWeight: FontWeight.w900,
                       fontFamily: 'Roboto',
                       color: Color(0xFF434343),
@@ -102,12 +110,12 @@ class LoginCentralizado extends StatelessWidget {
                   ),
             ),
           ),
-          const SizedBox(
-            height: 18,
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.035,
           ),
           Container(
-            width: 264,
-            height: 54,
+            height: MediaQuery.of(context).size.height * 0.069,
+            width: MediaQuery.of(context).size.width * 0.6,
             child: ElevatedButton(
               onPressed: () async{
                 if(emailController.text == 'pato.burguer.mob4@gmail.com') {
@@ -144,11 +152,11 @@ class LoginCentralizado extends StatelessWidget {
                 }
 
               },
-              child: const Text(
+              child: Text(
                 'Entrar',
                 style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 20,
+                    fontSize: MediaQuery.of(context).size.width * 0.055,
                     color: Colors.white,
                     fontWeight: FontWeight.w700),
               ),

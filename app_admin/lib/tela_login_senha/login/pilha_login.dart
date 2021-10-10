@@ -14,13 +14,13 @@ class _PilhaLoginState extends State<PilhaLogin> {
     return Stack(children: [
       LoginCentralizado(),
       Positioned(
-        top: 90,
-        left: 76,
-        right: 78,
+        top: MediaQuery.of(context).size.width * 0.15,
+        left: MediaQuery.of(context).size.width * 0.2,
+        right: MediaQuery.of(context).size.width * 0.2,
 
         child: Container(
-          width: 206,
-          height: 189,
+          width: MediaQuery.of(context).size.width * 0.6,
+          height: MediaQuery.of(context).size.width * 0.6,
           child: Image.asset(
             'assets/images/logo_pato_burguer.png',
           ),
