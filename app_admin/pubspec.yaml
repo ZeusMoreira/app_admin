@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cloud_firestore: ^2.5.3
+  firebase_storage: ^10.0.5
 
   flutter:
     sdk: flutter

@@ -38,7 +38,7 @@ class _TelaContatoState extends State<TelaContato> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Color(0xFFFF9B0D),
         body: FutureBuilder(
           future: userFuture,
@@ -559,7 +559,6 @@ class _TelaContatoState extends State<TelaContato> {
         );
   }
 }
-
 
 getData() async{
   var a = await FirebaseFirestore.instance
