@@ -1,3 +1,4 @@
+import 'package:app_admin/TelaAlterarCardapio/altcardapio.dart';
 import 'package:app_admin/tela_altera_contato/altera_contato.dart';
 import 'package:flutter/material.dart';
 import 'alterar_senha.dart';
@@ -135,7 +136,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                     ]),
                 ),
-                  onTap: null, // TODO
+                  onTap: (){Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => DesignAltCard())); //TODO
+                  }, // TODO
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height*0.08,),
                 GestureDetector(
