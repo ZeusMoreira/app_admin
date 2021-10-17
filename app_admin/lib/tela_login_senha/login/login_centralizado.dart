@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import '../senha/authentication_service.dart';
-import '../senha/home_page.dart';
+import '../../main_home/home_page.dart';
 
 
 class LoginCentralizado extends StatefulWidget {

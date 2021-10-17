@@ -1,10 +1,9 @@
-import 'package:app_admin/TelaAlterarCardapio/descricaobacon.dart';
-import 'package:app_admin/tela_login_senha/senha/home_page.dart';
+import 'package:app_admin/TelaAlterarCardapio/alt_item.dart';
+import 'package:app_admin/main_home/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class DesignAltCard extends StatefulWidget {
-  const DesignAltCard({ Key? key }) : super(key: key);
 
   @override
   _DesignAltCardState createState() => _DesignAltCardState();
@@ -37,8 +36,7 @@ class _DesignAltCardState extends State<DesignAltCard> {
               if (snapshot.hasError) {
                 return Center(child: CircularProgressIndicator());
               }
-              int length = snapshot.data.length;
-              var arr = ['Pato-Frango', 'Pato-Bacon', 'Pato-Grelhado', 'PatoTata Pequena', 'PatoTata Media', 'PatoTata Grande', 'Pato Escaldante', 'Pato Combo', 'Sucos', 'Refrigerantes'];
+              int length = snapshot.data.length-1;
               return Container(
                   child: Stack(
                       children: [
@@ -118,9 +116,17 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                 crossAxisCount: 2,
                                 childAspectRatio: 0.8,
                                 children: List.generate(length, (index){
+                                  String id = snapshot.data['lunch'][index];
                                   return InkWell(
                                     onTap: (){Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => Background(arr[index]),
+                                        MaterialPageRoute(builder: (context) => Background(
+                                          snapshot.data['lunch'][index],
+                                          snapshot.data[id]['nome'],
+                                          snapshot.data[id]['detalhes'],
+                                          snapshot.data[id]['ingredientes'],
+                                          snapshot.data[id]['preco'],
+                                          index.toString()
+                                        ),
                                     ));},
                                     child: Container(
                                         decoration: BoxDecoration(
@@ -153,7 +159,7 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                                     Padding(
                                                       padding: EdgeInsets.only(top: 60),
                                                       child: Text(
-                                                        snapshot.data[arr[index]]['nome'],
+                                                        snapshot.data[id]['nome'],
                                                         style: TextStyle(
                                                           fontFamily: 'Roboto',
                                                           color: Color(0xFF434343),
@@ -174,7 +180,7 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                                             ),),),
                                                         Padding(
                                                           padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                          child: Text(snapshot.data[arr[index]]['preco'],
+                                                          child: Text(snapshot.data[id]['preco'],
                                                             style: TextStyle(
                                                               fontFamily: 'Roboto',
                                                               color: Color(0xFF434343),
@@ -194,7 +200,7 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                                           top: 10.0
                                                       ),
                                                       height: 128,
-                                                      child: Image.network(snapshot.data[arr[index]]['imagem'],
+                                                      child: Image.network(snapshot.data[id]['imagem'],
                                                         fit: BoxFit.fill,
                                                       )
                                                   ),

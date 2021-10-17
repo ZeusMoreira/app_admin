@@ -2,7 +2,7 @@ import 'package:app_admin/tela_login_senha/senha/authentication_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../login/login_page.dart';
+import '../tela_login_senha/login/login_page.dart';
 import 'home_page.dart';
 
 
@@ -38,7 +38,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if(firebaseUser != null){
-      return const HomePage();
+      return HomePage();
     }
     return const LoginPage();
   }

@@ -1,4 +1,4 @@
-import 'package:app_admin/tela_login_senha/senha/home_page.dart';
+import 'package:app_admin/main_home/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
