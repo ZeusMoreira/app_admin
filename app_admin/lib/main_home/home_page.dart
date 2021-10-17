@@ -1,7 +1,10 @@
 import 'package:app_admin/TelaAlterarCardapio/altcardapio.dart';
 import 'package:app_admin/tela_altera_contato/altera_contato.dart';
+import 'package:app_admin/tela_login_senha/login/login_page.dart';
+import 'package:app_admin/tela_login_senha/senha/authentication_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import '../tela_login_senha/senha/alterar_senha.dart';
 
 class HomePage extends StatefulWidget {
@@ -435,6 +438,34 @@ class _HomePageState extends State<HomePage> {
                                );
                              }, // Navegaremos para a página alterar senha
                            ),
+                           SizedBox(height: MediaQuery
+                               .of(context)
+                               .size
+                               .height * 0.10,),
+                          ElevatedButton(
+                            onPressed: (){
+                              context.read<AuthenticationService>().signOut();
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) => LoginPage(),
+                                  ));
+                            },
+                            child: Text(
+                              'Sair',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: MediaQuery.of(context).size.height*0.03,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                  MaterialStateProperty.all<Color>(Color(0xFFFF9B0D)),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(7)))),
+                          )
+
+
                          ],
                        ),
                      ),

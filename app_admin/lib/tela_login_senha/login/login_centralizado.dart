@@ -47,13 +47,16 @@ class _LoginCentralizadoState extends State<LoginCentralizado> {
           Padding(
             padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03, ),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.058,
               width: MediaQuery.of(context).size.width * 0.66,
               child: TextField(
+                  maxLines: 1,
                   controller: emailController,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     labelText: 'Usuário',
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: EdgeInsets.only(left: 15),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(7))),
                   )),
@@ -66,14 +69,17 @@ class _LoginCentralizadoState extends State<LoginCentralizado> {
           Padding(
             padding:EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03,),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.058,
               width: MediaQuery.of(context).size.width * 0.66,
               child: TextField(
+                  maxLines: 1,
                   controller: passwordController,
                   keyboardType: TextInputType.text,
                   obscureText: true,
                   decoration: const InputDecoration(
                     labelText: 'Senha',
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: EdgeInsets.only(left: 15),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(7))),
                   )),

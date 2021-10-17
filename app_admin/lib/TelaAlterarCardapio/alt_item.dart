@@ -326,7 +326,6 @@ class _BackgroundState extends State<Background> {
                                               fontSize: (MediaQuery.of(context).size.height)*0.04,
                                               fontWeight: FontWeight.w900,
                                               fontStyle: FontStyle.normal,
-
                                           ),
                                         ),
                                       ),
