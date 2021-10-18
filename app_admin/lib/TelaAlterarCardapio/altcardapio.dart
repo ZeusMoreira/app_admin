@@ -87,7 +87,6 @@ class _DesignAltCardState extends State<DesignAltCard> {
                           ],
                         ),
 
-
                         Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
