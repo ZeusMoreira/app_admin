@@ -3,6 +3,8 @@ import 'package:app_admin/main_home/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'add_item.dart';
+
 class DesignAltCard extends StatefulWidget {
 
   @override
@@ -83,6 +85,28 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                     color: Colors.white
                                 ),
                               ),
+                            ),
+                            Padding(
+                                padding: EdgeInsets.only(left: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.12, top: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height * 0.05),
+                                child: IconButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => AddItem())
+                                    );
+                                  },
+                                  icon: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 28,
+                                  ),
+                                )
                             ),
                           ],
                         ),

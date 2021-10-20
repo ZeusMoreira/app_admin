@@ -1,6 +1,8 @@
 import 'package:app_admin/TelaAlterarCardapio/altcardapio.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Background extends StatefulWidget {
   late final String id;
@@ -269,6 +271,146 @@ class _BackgroundState extends State<Background> {
                             color: Colors.white,
                           ),
                         ),
+                        IconButton(
+                          onPressed: (){
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return Dialog(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(16.0)
+                                      ),
+                                      child: Stack(
+                                          children:  [Container(
+                                              height: (MediaQuery.of(context).size.height)*0.3203,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.circular(16.0)
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    height: (MediaQuery.of(context).size.height)*0.09375,
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xFFFF9B0D),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(16.0),
+                                                            topRight: Radius.circular(16.0)
+                                                        )
+                                                    ),
+                                                    child: Center(
+                                                        child: Text(
+                                                            "Promoção",
+                                                            style: TextStyle(
+                                                                fontSize: (MediaQuery.of(context).size.height)*0.0375,
+                                                                fontWeight: FontWeight.w900,
+                                                                color: Color(0xFFFFFFFF)
+                                                            )
+                                                        )
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: (MediaQuery.of(context).size.height)*0.0375,
+                                                        right: (MediaQuery.of(context).size.width)*0.025,
+                                                        left: (MediaQuery.of(context).size.width)*0.025
+                                                    ),
+                                                    child: Text("Deseja deixar esse item em promoção?",
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                          fontSize:(MediaQuery.of(context).size.height)*0.028125,
+                                                          fontWeight: FontWeight.w700,
+                                                        )
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: (MediaQuery.of(context).size.width)*0.044,
+                                                        left: (MediaQuery.of(context).size.width)*0.044,
+                                                        top: (MediaQuery.of(context).size.height)*0.0375
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: (){
+                                                            DocumentReference ref = FirebaseFirestore.instance.collection('PatoBurguer').doc('lanches');
+                                                            ref.update({
+                                                              widget.id+'.promo': false,
+                                                            });
+                                                            Navigator.of(context).push(
+                                                                MaterialPageRoute(builder: (context) => DesignAltCard(),
+                                                                ));
+                                                          },
+                                                          child: Container(
+                                                              height: (MediaQuery.of(context).size.height)*0.0609375,
+                                                              width: (MediaQuery.of(context).size.width)*0.3333,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(8.0),
+                                                                  color: Color(0xFFFF9B0D)
+                                                              ),
+                                                              child:
+                                                              Center(
+                                                                  child: Text(
+                                                                      "Não",
+                                                                      style: TextStyle(
+                                                                          color: Color(0xFFFFFFFF),
+                                                                          fontSize: MediaQuery.of(context).size.height*0.03125,
+                                                                          fontWeight: FontWeight.w700
+                                                                      )
+
+                                                                  )
+                                                              )
+                                                          ),
+                                                        ),
+                                                        InkWell(
+                                                          onTap: (){
+                                                            DocumentReference ref = FirebaseFirestore.instance.collection('PatoBurguer').doc('lanches');
+                                                            ref.update({
+                                                              widget.id+'.promo': true,
+                                                            });
+                                                            Navigator.of(context).push(
+                                                                MaterialPageRoute(builder: (context) => DesignAltCard(),
+                                                                ));
+                                                          },
+                                                          child: Container(
+                                                              height: (MediaQuery.of(context).size.height)*0.0609375,
+                                                              width: (MediaQuery.of(context).size.width)*0.3333,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(8.0),
+                                                                  color: Color(0xFFFF0000)
+                                                              ),
+                                                              child:
+                                                              Center(
+                                                                  child: Text(
+                                                                      "Sim",
+                                                                      style: TextStyle(
+                                                                          color: Color(0xFFFFFFFF),
+                                                                          fontSize: MediaQuery.of(context).size.height*0.03125,
+                                                                          fontWeight: FontWeight.w700
+                                                                      )
+
+                                                                  )
+                                                              )
+                                                          ),
+                                                        )
+                                                      ],),
+                                                  )
+                                                ],
+                                              )
+                                          ),
+                                          ])
+
+                                  );
+                                }
+                            );
+                          },
+                          icon: Icon(
+                            MdiIcons.accountCashOutline,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     )
                 ),
@@ -467,9 +609,18 @@ class _BackgroundState extends State<Background> {
                                               maxLines: 1,
                                               controller: _price,
                                               decoration: InputDecoration(
+                                                prefixIcon: Padding(
+                                                  padding: EdgeInsets.only(left: 12,right: 12,top: 12,bottom: 12),
+                                                  child: Text('R\$',
+                                                    style: TextStyle(
+                                                      fontSize: (MediaQuery.of(context).size.height)*0.023,
+                                                      fontFamily: 'Roboto',
+                                                      color: Color(0xFFFF9B0D),
+                                                      fontWeight: FontWeight.bold,
+                                                    ),),),
                                                 filled: true,
                                                 fillColor: Colors.white,
-                                                contentPadding: EdgeInsets.only(left: 10),
+                                                contentPadding: EdgeInsets.only(top: 0),
                                                 border: OutlineInputBorder(),
                                               ),
                                               style: TextStyle(
@@ -488,17 +639,15 @@ class _BackgroundState extends State<Background> {
                         ),
                       ),
                       Positioned(
-                        right: (MediaQuery.of(context).size.width)*0.1605,
-                        left: (MediaQuery.of(context).size.width)*0.1105,
-                        top: (MediaQuery.of(context).size.height)*0.1025,
+                        right: (MediaQuery.of(context).size.width)*0.1105,
+                        left: (MediaQuery.of(context).size.width)*0.115,
+                        top: (MediaQuery.of(context).size.height)*0.1625,
                         child:
                         Image.network(
                           snapshot.data[widget.id]['imagem'],
                           fit: BoxFit.fill,
-                          height: (MediaQuery.of(context).size.height)*0.384,
-                          width: (MediaQuery.of(context).size.width),
-                          scale: 0.3,
-
+                            height: (MediaQuery.of(context).size.height)*0.31,
+                            width: (MediaQuery.of(context).size.width)*0.8388
                         ),
                       )
                     ]
@@ -523,3 +672,4 @@ getData() async{
       .get();
   return a.data();
 }
+
