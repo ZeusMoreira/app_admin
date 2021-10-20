@@ -165,7 +165,7 @@ class _AddItemState extends State<AddItem> {
                                       String fileName = basename(imageFile!.path);
                                       Reference ref = FirebaseStorage.instance.ref().child('/$fileName');
                                       String lnk =  await ref.getDownloadURL();
-                                      if(_nome.text == "" || _ingredients.text == "" || _details.text == "" || _price.text == "" || _tipo.text == "" || lnk == ""){
+                                      if(_nome.text == "" || _ingredients.text == "" || _details.text == "" || _price.text == "" || _tipo.text == ""){
                                         showDialog(
                                           context: context,
                                           barrierDismissible: true,
