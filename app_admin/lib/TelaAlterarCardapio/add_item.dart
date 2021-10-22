@@ -6,8 +6,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:path/path.dart';
 
 class AddItem extends StatefulWidget {
@@ -22,9 +23,8 @@ class _AddItemState extends State<AddItem> {
   TextEditingController _nome = TextEditingController();
   TextEditingController _details = TextEditingController();
   TextEditingController _ingredients = TextEditingController();
-  TextEditingController _price = TextEditingController();
+  var _price =  MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: ',');
   TextEditingController _tipo = TextEditingController();
-  bool promocao = false;
 
   File? imageFile;
 
@@ -111,6 +111,7 @@ class _AddItemState extends State<AddItem> {
                     if (snapshot.hasError) {
                       return Center(child: CircularProgressIndicator());
                     }
+
                     return SingleChildScrollView(
                       child: Container(
                         height: MediaQuery
@@ -162,20 +163,25 @@ class _AddItemState extends State<AddItem> {
                                 children: [
                                   IconButton(
                                     onPressed: () async{
-                                      String fileName = basename(imageFile!.path);
-                                      Reference ref = FirebaseStorage.instance.ref().child('/$fileName');
-                                      String lnk =  await ref.getDownloadURL();
-                                      if(_nome.text == "" || _ingredients.text == "" || _details.text == "" || _price.text == "" || _tipo.text == ""){
+                                      _tipo.text = _tipo.text.toLowerCase();
+                                      if(_nome.text == "" || _ingredients.text == "" || _details.text == "" || _price.text == "" || _tipo.text == "" ||
+                                              _tipo.text != "lanche" && _tipo.text != "bebida"
+                                              && _tipo.text != "acompanhamento" && _tipo.text != "combo"
+                                      ){
                                         showDialog(
                                           context: context,
                                           barrierDismissible: true,
                                           builder: (BuildContext context) => const AlertDialog(
                                             title: Text('Dados incompletos'),
-                                            content: Text('Todos os campos devem ser preenchidos.'),
+                                            content: Text('Todos os campos devem ser preenchidos corretamente.'
+                                                ' Caso contrário verifique se a imagem foi enviada ou se o tipo do produto existe.'),
                                           ),
                                         );
                                       }else{
                                         DocumentReference ref = FirebaseFirestore.instance.collection('PatoBurguer').doc('lanches');
+                                        String fileName = basename(imageFile!.path);
+                                        Reference refi = FirebaseStorage.instance.ref().child('/$fileName');
+                                        String lnk =  await refi.getDownloadURL();
                                         ref.set({
                                           _nome.text: {
                                             "detalhes": _details.text,
@@ -184,7 +190,7 @@ class _AddItemState extends State<AddItem> {
                                             "ingredientes": _ingredients.text,
                                             "tipo": _tipo.text,
                                             "imagem": lnk,
-                                            "promo": promocao
+                                            "promo": false
                                           }},SetOptions(merge: true)).then((_){
                                           print("success!");
                                         });
@@ -198,135 +204,6 @@ class _AddItemState extends State<AddItem> {
                                     },
                                     icon: Icon(
                                       Icons.save,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: (){
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return Dialog(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(16.0)
-                                                ),
-                                                child: Stack(
-                                                    children:  [Container(
-                                                        height: (MediaQuery.of(context).size.height)*0.3203,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius: BorderRadius.circular(16.0)
-                                                        ),
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              height: (MediaQuery.of(context).size.height)*0.09375,
-                                                              width: double.infinity,
-                                                              decoration: BoxDecoration(
-                                                                  color: Color(0xFFFF9B0D),
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius.circular(16.0),
-                                                                      topRight: Radius.circular(16.0)
-                                                                  )
-                                                              ),
-                                                              child: Center(
-                                                                  child: Text(
-                                                                      "Promoção",
-                                                                      style: TextStyle(
-                                                                          fontSize: (MediaQuery.of(context).size.height)*0.0375,
-                                                                          fontWeight: FontWeight.w900,
-                                                                          color: Color(0xFFFFFFFF)
-                                                                      )
-                                                                  )
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  top: (MediaQuery.of(context).size.height)*0.0375,
-                                                                  right: (MediaQuery.of(context).size.width)*0.025,
-                                                                  left: (MediaQuery.of(context).size.width)*0.025
-                                                              ),
-                                                              child: Text("Tem certeza que deseja deixa esse item em promoção?",
-                                                                  textAlign: TextAlign.center,
-                                                                  style: TextStyle(
-                                                                    fontSize:(MediaQuery.of(context).size.height)*0.028125,
-                                                                    fontWeight: FontWeight.w700,
-                                                                  )
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  right: (MediaQuery.of(context).size.width)*0.044,
-                                                                  left: (MediaQuery.of(context).size.width)*0.044,
-                                                                  top: (MediaQuery.of(context).size.height)*0.0375
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  InkWell(
-                                                                    onTap: (){
-                                                                      promocao = false;
-                                                                      Navigator.of(context).pop();
-                                                                    },
-                                                                    child: Container(
-                                                                        height: (MediaQuery.of(context).size.height)*0.0609375,
-                                                                        width: (MediaQuery.of(context).size.width)*0.3333,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius: BorderRadius.circular(8.0),
-                                                                            color: Color(0xFFFF9B0D)
-                                                                        ),
-                                                                        child:
-                                                                        Center(
-                                                                            child: Text(
-                                                                                "Não",
-                                                                                style: TextStyle(
-                                                                                    color: Color(0xFFFFFFFF),
-                                                                                    fontSize: MediaQuery.of(context).size.height*0.03125,
-                                                                                    fontWeight: FontWeight.w700
-                                                                                )
-
-                                                                            )
-                                                                        )
-                                                                    ),
-                                                                  ),
-                                                                  InkWell(
-                                                                    onTap: (){
-                                                                      promocao = true;
-                                                                      Navigator.of(context).pop();
-                                                                    },
-                                                                    child: Container(
-                                                                        height: (MediaQuery.of(context).size.height)*0.0609375,
-                                                                        width: (MediaQuery.of(context).size.width)*0.3333,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius: BorderRadius.circular(8.0),
-                                                                            color: Color(0xFFFF0000)
-                                                                        ),
-                                                                        child:
-                                                                        Center(
-                                                                            child: Text(
-                                                                                "Sim",
-                                                                                style: TextStyle(
-                                                                                    color: Color(0xFFFFFFFF),
-                                                                                    fontSize: MediaQuery.of(context).size.height*0.03125,
-                                                                                    fontWeight: FontWeight.w700
-                                                                                )
-                                                                            )
-                                                                        )
-                                                                    ),
-                                                                  )
-                                                                ],),
-                                                            )
-                                                          ],
-                                                        )
-                                                    ),
-                                                    ])
-
-                                            );
-                                          }
-                                      );
-                                    },
-                                    icon: Icon(
-                                      MdiIcons.accountCashOutline,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -357,7 +234,7 @@ class _AddItemState extends State<AddItem> {
                                               padding: EdgeInsets.only(
                                                 left: (MediaQuery.of(context).size.width)*0.06944,
                                                 right: (MediaQuery.of(context).size.width)*0.06944,
-                                                top: (MediaQuery.of(context).size.height)*0.0563,
+                                                top: (MediaQuery.of(context).size.height)*0.0363,
                                               ),
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -597,9 +474,10 @@ class _AddItemState extends State<AddItem> {
                                                       width: (MediaQuery.of(context).size.width)*0.85,
                                                       child: TextField(
                                                           maxLines: 1,
+                                                          keyboardType: TextInputType.number,
                                                           controller: _price,
                                                           decoration: InputDecoration(
-                                                            hintText: "Formato: 0,00",
+                                                            hintText: "0,00 ou 0,00",
                                                             hintStyle: TextStyle(
                                                               color: Color(0xFF898989),
                                                               fontSize: (MediaQuery.of(context).size.height)*0.03,

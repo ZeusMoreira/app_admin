@@ -35,7 +35,6 @@ class _BackgroundState extends State<Background> {
     userFuture = getData();
   }
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -339,9 +338,7 @@ class _BackgroundState extends State<Background> {
                                                             ref.update({
                                                               widget.id+'.promo': false,
                                                             });
-                                                            Navigator.of(context).push(
-                                                                MaterialPageRoute(builder: (context) => DesignAltCard(),
-                                                                ));
+                                                            Navigator.of(context).pop();
                                                           },
                                                           child: Container(
                                                               height: (MediaQuery.of(context).size.height)*0.0609375,
@@ -370,9 +367,7 @@ class _BackgroundState extends State<Background> {
                                                             ref.update({
                                                               widget.id+'.promo': true,
                                                             });
-                                                            Navigator.of(context).push(
-                                                                MaterialPageRoute(builder: (context) => DesignAltCard(),
-                                                                ));
+                                                            Navigator.of(context).pop();
                                                           },
                                                           child: Container(
                                                               height: (MediaQuery.of(context).size.height)*0.0609375,
