@@ -60,10 +60,10 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                             builder: (context) => HomePage())
                                     );
                                   },
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.arrow_back_ios,
                                     color: Colors.white,
-                                    size: 28,
+                                    size: MediaQuery.of(context).size.height*0.035,
                                   ),
                                 )
                             ),
@@ -71,7 +71,7 @@ class _DesignAltCardState extends State<DesignAltCard> {
                               padding: EdgeInsets.only(left: MediaQuery
                                   .of(context)
                                   .size
-                                  .width * 0.12, top: MediaQuery
+                                  .width * 0.1, top: MediaQuery
                                   .of(context)
                                   .size
                                   .height * 0.05),
@@ -81,7 +81,7 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
                                     fontWeight: FontWeight.w900,
-                                    fontSize: 24,
+                                    fontSize: MediaQuery.of(context).size.height*0.032,
                                     color: Colors.white
                                 ),
                               ),
@@ -90,10 +90,13 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                 padding: EdgeInsets.only(left: MediaQuery
                                     .of(context)
                                     .size
-                                    .width * 0.12, top: MediaQuery
+                                    .width * 0.1, top: MediaQuery
                                     .of(context)
                                     .size
-                                    .height * 0.05),
+                                    .height * 0.05,right: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.05),
                                 child: IconButton(
                                   onPressed: () {
                                     Navigator.of(context).push(
@@ -101,10 +104,10 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                             builder: (context) => AddItem())
                                     );
                                   },
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.add,
                                     color: Colors.white,
-                                    size: 28,
+                                    size: MediaQuery.of(context).size.height*0.035,
                                   ),
                                 )
                             ),
@@ -151,86 +154,73 @@ class _DesignAltCardState extends State<DesignAltCard> {
                                           index.toString()
                                         ),
                                     ));},
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFFFCB82),
-                                          borderRadius: BorderRadius.circular(16),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              blurRadius: 4,
-                                              color: Color(0x3F000000),
-                                              offset: Offset(0, 4),
-                                              spreadRadius: 0,
-                                            )
-                                          ],
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Color(0xFFFFCB82),
+                                                  Colors.white,
+                                                  Colors.white,
+                                                ],
+                                              ),
+                                              borderRadius: BorderRadius.circular(16),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 4,
+                                                  color: Color(0x3F000000),
+                                                  offset: Offset(0, 4),
+                                                  spreadRadius: 0,
+                                                )
+                                              ],
+                                            ),
                                         ),
-                                        child: Stack(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 80),
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius: BorderRadius.only(
-                                                    bottomLeft: Radius.circular(16),
-                                                    bottomRight: Radius.circular(16),
-                                                  ),
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(top: 60),
-                                                      child: Text(
-                                                        snapshot.data[id]['nome'],
-                                                        style: TextStyle(
-                                                          fontFamily: 'Roboto',
-                                                          color: Color(0xFF434343),
-                                                          fontSize: 16,
-                                                          fontWeight: FontWeight.bold,
-                                                        ),),
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize: MainAxisSize.max,
+                                                Column(
                                                       children: [
-                                                        Padding(
-                                                          padding: EdgeInsetsDirectional.fromSTEB(45, 0, 0, 0),
-                                                          child: Text('R\$',
-                                                            style: TextStyle(
-                                                              fontFamily: 'Roboto',
-                                                              color: Color(0xFFFF9B0D),
-                                                              fontWeight: FontWeight.bold,
-                                                            ),),),
-                                                        Padding(
-                                                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                          child: Text(snapshot.data[id]['preco'],
+                                                        Align(
+                                                          alignment: Alignment.topCenter,
+                                                          child: Container(
+                                                              height: MediaQuery.of(context).size.height*0.18,
+                                                              child: Image.network(snapshot.data[id]['imagem'],
+                                                                fit: BoxFit.fill,
+                                                              )
+
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                            snapshot.data[id]['nome'],
                                                             style: TextStyle(
                                                               fontFamily: 'Roboto',
                                                               color: Color(0xFF434343),
-                                                              fontSize: 20,
+                                                              fontSize: MediaQuery.of(context).size.height*0.02,
                                                               fontWeight: FontWeight.bold,
-                                                            ),),)
-                                                      ],)
-                                                  ],
-                                                )
-                                              ),
-                                            ),
-                                            Positioned.fill(
-                                                child: Align(
-                                                  alignment: Alignment.topCenter,
-                                                  child: Container(
-                                                      padding: EdgeInsets.only(
-                                                          top: 10.0
-                                                      ),
-                                                      height: 128,
-                                                      child: Image.network(snapshot.data[id]['imagem'],
-                                                        fit: BoxFit.fill,
-                                                      )
-                                                  ),
-                                                )
-                                            )
-                                          ],
-                                        )
+                                                            ),),
+
+                                                        Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.1),
+                                                              child: Text('R\$',
+                                                                style: TextStyle(
+                                                                  fontFamily: 'Roboto',
+                                                                  color: Color(0xFFFF9B0D),
+                                                                  fontWeight: FontWeight.bold,
+                                                                ),),),
+                                                            Text(snapshot.data[id]['preco'],
+                                                                style: TextStyle(
+                                                                  fontFamily: 'Roboto',
+                                                                  color: Color(0xFF434343),
+                                                                  fontSize: MediaQuery.of(context).size.height*0.025,
+                                                                  fontWeight: FontWeight.bold,
+                                                                ),)
+                                                          ],)
+                                                      ],
+                                                    ),
+
+                                      ],
                                     ),
                                   );
                                 }),

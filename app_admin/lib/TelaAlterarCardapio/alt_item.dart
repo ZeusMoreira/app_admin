@@ -79,22 +79,22 @@ class _BackgroundState extends State<Background> {
                                 MaterialPageRoute(builder: (context) => DesignAltCard())
                             );
                           },
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.arrow_back_ios,
                             color: Colors.white,
-                            size: 28,
+                            size: MediaQuery.of(context).size.height*0.035,
                           ),
                         )
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.2, top: MediaQuery.of(context).size.height*0.05),
+                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.19, top: MediaQuery.of(context).size.height*0.05),
                       child: Text(
                         'Cardápio',
                         style: TextStyle(
                             fontFamily:'Roboto',
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w900,
-                            fontSize: 24,
+                            fontSize: MediaQuery.of(context).size.height*0.035,
                             color: Colors.white
                         ),
                       ),
@@ -103,7 +103,7 @@ class _BackgroundState extends State<Background> {
                 ),
 
                 Padding(
-                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.88, top: MediaQuery.of(context).size.height*0.05),
+                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.85, top: MediaQuery.of(context).size.height*0.05),
                     child: Column(
                       children: [
                         IconButton(
@@ -239,6 +239,7 @@ class _BackgroundState extends State<Background> {
                           icon: Icon(
                             Icons.delete_forever_sharp,
                             color: Colors.white,
+                            size: MediaQuery.of(context).size.height*0.035,
                           ),
                         ),
                         IconButton(
@@ -268,6 +269,7 @@ class _BackgroundState extends State<Background> {
                           icon: Icon(
                             Icons.save,
                             color: Colors.white,
+                            size: MediaQuery.of(context).size.height*0.035,
                           ),
                         ),
                         IconButton(
@@ -404,6 +406,7 @@ class _BackgroundState extends State<Background> {
                           icon: Icon(
                             MdiIcons.accountCashOutline,
                             color: Colors.white,
+                            size: MediaQuery.of(context).size.height*0.035,
                           ),
                         ),
                       ],
@@ -426,210 +429,212 @@ class _BackgroundState extends State<Background> {
                             ),
                             height: (MediaQuery.of(context).size.height)/1.7,
                             width: (MediaQuery.of(context).size.width),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    left: (MediaQuery.of(context).size.width)*0.06944,
-                                    right: (MediaQuery.of(context).size.width)*0.06944,
-                                    top: (MediaQuery.of(context).size.height)*0.0563,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: (MediaQuery.of(context).size.width)*0.06944,
+                                      right: (MediaQuery.of(context).size.width)*0.06944,
+                                      top: (MediaQuery.of(context).size.height)*0.0563,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            "Nome",
+                                            style: TextStyle(
+                                                color: Color(0xFF434343),
+                                                fontSize: (MediaQuery.of(context).size.height)*0.028125,
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle: FontStyle.normal
+                                            )
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width*0.85,
+                                          child: TextField(
+                                            maxLines: 1,
+                                            controller: _nome,
+                                            decoration: InputDecoration(
+                                              filled: true,
+                                              fillColor: Colors.white,
+                                              border: OutlineInputBorder(),
+                                              contentPadding: EdgeInsets.only(left: 10),
+                                            ),
+                                            style: TextStyle(
+                                                color: Color(0xFF898989),
+                                                fontSize: (MediaQuery.of(context).size.height)*0.04,
+                                                fontWeight: FontWeight.w900,
+                                                fontStyle: FontStyle.normal,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      Text(
-                                          "Nome",
-                                          style: TextStyle(
-                                              color: Color(0xFF434343),
-                                              fontSize: (MediaQuery.of(context).size.height)*0.028125,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle: FontStyle.normal
-                                          )
-                                      ),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width*0.85,
-                                        child: TextField(
-                                          maxLines: 1,
-                                          controller: _nome,
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            border: OutlineInputBorder(),
-                                            contentPadding: EdgeInsets.only(left: 10),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                          top: (MediaQuery.of(context).size.height)*0.0125,
+                                          left: (MediaQuery.of(context).size.width)*0.0694,
+                                        ),
+                                        child: Text(
+                                            "Detalhes",
+                                            style: TextStyle(
+                                            color: Color(0xFF434343),
+                                                fontSize: (MediaQuery.of(context).size.height)*0.028125,
+                                                fontWeight: FontWeight.w900,
+                                                fontStyle: FontStyle.normal
+                                            )
                                           ),
-                                          style: TextStyle(
-                                              color: Color(0xFF898989),
-                                              fontSize: (MediaQuery.of(context).size.height)*0.04,
-                                              fontWeight: FontWeight.w900,
-                                              fontStyle: FontStyle.normal,
-                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: (MediaQuery.of(context).size.height)*0.0125,
+                                            left: (MediaQuery.of(context).size.width)*0.0694,
+                                            right: (MediaQuery.of(context).size.width)*0.0694
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: (MediaQuery.of(context).size.width)*0.85,
+                                                child: TextField(
+                                                  maxLines: 3,
+                                                  controller: _details,
+                                                  decoration: InputDecoration(
+                                                    filled: true,
+                                                    fillColor: Colors.white,
+                                                    contentPadding: EdgeInsets.only(left: 5, top: 5),
+                                                    border: OutlineInputBorder(),
+                                                  ),
+                                                  style: TextStyle(
+                                                      color: Color(0xFF434343),
+                                                      fontSize: (MediaQuery.of(context).size.height)*0.021875,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontStyle: FontStyle.normal
+                                                  ),
+                                                ),
+
+                                            )
+
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
-                                ),
-                                Row(
-                                  children: [
+                                  Row(
+                                    children: [
                                       Padding(
                                         padding: EdgeInsets.only(
-                                        top: (MediaQuery.of(context).size.height)*0.0125,
-                                        left: (MediaQuery.of(context).size.width)*0.0694,
-                                      ),
-                                      child: Text(
-                                          "Detalhes",
-                                          style: TextStyle(
-                                          color: Color(0xFF434343),
-                                              fontSize: (MediaQuery.of(context).size.height)*0.028125,
-                                              fontWeight: FontWeight.w900,
-                                              fontStyle: FontStyle.normal
-                                          )
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
                                           top: (MediaQuery.of(context).size.height)*0.0125,
                                           left: (MediaQuery.of(context).size.width)*0.0694,
-                                          right: (MediaQuery.of(context).size.width)*0.0694
+                                        ),
+                                        child: Text(
+                                            "Ingredientes",
+                                            style: TextStyle(
+                                                color: Color(0xFF434343),
+                                                fontSize: (MediaQuery.of(context).size.height)*0.028125,
+                                                fontWeight: FontWeight.w900,
+                                                fontStyle: FontStyle.normal
+                                            )
+                                        ),
                                       ),
-                                      child: Column(
-                                        children: [
-                                          Container(
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: (MediaQuery.of(context).size.height)*0.0125,
+                                            left: (MediaQuery.of(context).size.width)*0.0694,
+                                            right: (MediaQuery.of(context).size.width)*0.0694
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                                padding: EdgeInsets.only(
+                                                  top: 1.0,
+                                                  bottom: 1.0,
+                                                ),
+                                                width: (MediaQuery.of(context).size.width)*0.85,
+                                                  child: TextField(
+                                                      maxLines: 3,
+                                                      controller: _ingredients,
+                                                      decoration: InputDecoration(
+                                                        filled: true,
+                                                        fillColor: Colors.white,
+                                                        contentPadding: EdgeInsets.only(left: 5, top: 5),
+                                                        border: OutlineInputBorder(),
+                                                      ),
+                                                      style: TextStyle(
+                                                          color: Color(0xFF434343),
+                                                          fontSize: (MediaQuery.of(context).size.height)*0.021875,
+                                                          fontWeight: FontWeight.w500,
+                                                          fontStyle: FontStyle.normal
+                                                      )
+                                                  ),
+
+                                            )],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      top: (MediaQuery.of(context).size.height)*0.0125,
+                                      left: (MediaQuery.of(context).size.width)*0.0694,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            "Preço",
+                                            style: TextStyle(
+                                                color: Color(0xFF434343),
+                                                fontSize: (MediaQuery.of(context).size.height)*0.028125,
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle: FontStyle.normal
+                                            )
+                                        ),
+                                        Container(
                                             width: (MediaQuery.of(context).size.width)*0.85,
-                                              child: TextField(
-                                                maxLines: 3,
-                                                controller: _details,
+                                            child: TextField(
+                                                maxLines: 1,
+                                                controller: _price,
                                                 decoration: InputDecoration(
+                                                  prefixIcon: Padding(
+                                                    padding: EdgeInsets.only(left: 12,right: 12,top: 12,bottom: 12),
+                                                    child: Text('R\$',
+                                                      style: TextStyle(
+                                                        fontSize: (MediaQuery.of(context).size.height)*0.023,
+                                                        fontFamily: 'Roboto',
+                                                        color: Color(0xFFFF9B0D),
+                                                        fontWeight: FontWeight.bold,
+                                                      ),),),
                                                   filled: true,
                                                   fillColor: Colors.white,
-                                                  contentPadding: EdgeInsets.only(left: 5, top: 5),
+                                                  contentPadding: EdgeInsets.only(top: 0),
                                                   border: OutlineInputBorder(),
                                                 ),
                                                 style: TextStyle(
-                                                    color: Color(0xFF434343),
-                                                    fontSize: (MediaQuery.of(context).size.height)*0.021875,
-                                                    fontWeight: FontWeight.w500,
+                                                    color: Color(0xFF898989),
+                                                    fontSize: (MediaQuery.of(context).size.height)*0.04,
+                                                    fontWeight: FontWeight.w900,
                                                     fontStyle: FontStyle.normal
-                                                ),
-                                              ),
-
-                                          )
-
-                                        ],
-                                      ),
+                                                )
+                                            )
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        top: (MediaQuery.of(context).size.height)*0.0125,
-                                        left: (MediaQuery.of(context).size.width)*0.0694,
-                                      ),
-                                      child: Text(
-                                          "Ingredientes",
-                                          style: TextStyle(
-                                              color: Color(0xFF434343),
-                                              fontSize: (MediaQuery.of(context).size.height)*0.028125,
-                                              fontWeight: FontWeight.w900,
-                                              fontStyle: FontStyle.normal
-                                          )
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: (MediaQuery.of(context).size.height)*0.0125,
-                                          left: (MediaQuery.of(context).size.width)*0.0694,
-                                          right: (MediaQuery.of(context).size.width)*0.0694
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                              padding: EdgeInsets.only(
-                                                top: 1.0,
-                                                bottom: 1.0,
-                                              ),
-                                              width: (MediaQuery.of(context).size.width)*0.85,
-                                                child: TextField(
-                                                    maxLines: 3,
-                                                    controller: _ingredients,
-                                                    decoration: InputDecoration(
-                                                      filled: true,
-                                                      fillColor: Colors.white,
-                                                      contentPadding: EdgeInsets.only(left: 5, top: 5),
-                                                      border: OutlineInputBorder(),
-                                                    ),
-                                                    style: TextStyle(
-                                                        color: Color(0xFF434343),
-                                                        fontSize: (MediaQuery.of(context).size.height)*0.021875,
-                                                        fontWeight: FontWeight.w500,
-                                                        fontStyle: FontStyle.normal
-                                                    )
-                                                ),
-
-                                          )],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: (MediaQuery.of(context).size.height)*0.0125,
-                                    left: (MediaQuery.of(context).size.width)*0.0694,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          "Preço",
-                                          style: TextStyle(
-                                              color: Color(0xFF434343),
-                                              fontSize: (MediaQuery.of(context).size.height)*0.028125,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle: FontStyle.normal
-                                          )
-                                      ),
-                                      Container(
-                                          width: (MediaQuery.of(context).size.width)*0.85,
-                                          child: TextField(
-                                              maxLines: 1,
-                                              controller: _price,
-                                              decoration: InputDecoration(
-                                                prefixIcon: Padding(
-                                                  padding: EdgeInsets.only(left: 12,right: 12,top: 12,bottom: 12),
-                                                  child: Text('R\$',
-                                                    style: TextStyle(
-                                                      fontSize: (MediaQuery.of(context).size.height)*0.023,
-                                                      fontFamily: 'Roboto',
-                                                      color: Color(0xFFFF9B0D),
-                                                      fontWeight: FontWeight.bold,
-                                                    ),),),
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                contentPadding: EdgeInsets.only(top: 0),
-                                                border: OutlineInputBorder(),
-                                              ),
-                                              style: TextStyle(
-                                                  color: Color(0xFF898989),
-                                                  fontSize: (MediaQuery.of(context).size.height)*0.04,
-                                                  fontWeight: FontWeight.w900,
-                                                  fontStyle: FontStyle.normal
-                                              )
-                                          )
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             )
                         ),
                       ),
@@ -637,8 +642,7 @@ class _BackgroundState extends State<Background> {
                         right: (MediaQuery.of(context).size.width)*0.1105,
                         left: (MediaQuery.of(context).size.width)*0.115,
                         top: (MediaQuery.of(context).size.height)*0.1625,
-                        child:
-                        Image.network(
+                        child: Image.network(
                           snapshot.data[widget.id]['imagem'],
                           fit: BoxFit.fill,
                             height: (MediaQuery.of(context).size.height)*0.31,

@@ -82,17 +82,17 @@ class _TelaContatoState extends State<TelaContato> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05, top: MediaQuery.of(context).size.height*0.05),
+                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.06, top: MediaQuery.of(context).size.height*0.05),
                                       child: IconButton(
                                         onPressed: () {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(builder: (context) => HomePage())
                                           );
                                         },
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.arrow_back_ios,
                                           color: Colors.white,
-                                          size: 28,
+                                          size: MediaQuery.of(context).size.height*0.035,
                                         ),
                                       )
                                   ),
@@ -104,7 +104,7 @@ class _TelaContatoState extends State<TelaContato> {
                                           fontFamily:'Roboto',
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w900,
-                                          fontSize: 24,
+                                          fontSize: MediaQuery.of(context).size.height*0.035,
                                           color: Colors.white
                                       ),
                                     ),
@@ -130,47 +130,113 @@ class _TelaContatoState extends State<TelaContato> {
                                             )
                                         ),
 
-                                        child: Column(
-                                          children: [
-                                            Column(
-                                                children:[
-                                                  Padding(
-                                                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.67, top: MediaQuery.of(context).size.height*0.01),
-                                                    child: const Text(
-                                                      'Endereço:',
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.w900,
-                                                          fontStyle: FontStyle.normal,
-                                                          fontFamily: 'Roboto',
-                                                          color: Color(0xFFFF9B0D)
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            children: [
+                                              Column(
+                                                  children:[
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07, top: MediaQuery.of(context).size.height*0.01),
+                                                      child: Center(
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              'Endereço:',
+                                                              style: TextStyle(
+                                                                  fontSize: MediaQuery.of(context).size.height*0.026,
+                                                                  fontWeight: FontWeight.w900,
+                                                                  fontStyle: FontStyle.normal,
+                                                                  fontFamily: 'Roboto',
+                                                                  color: Color(0xFFFF9B0D)
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
 
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01),
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.01),
 
-                                                  Padding(
-                                                      padding: const EdgeInsets.only(left: 25,right: 25),
+                                                    Padding(
+                                                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
+                                                        child: Row(
+                                                              children: [
+                                                                Container(
+                                                                  width: MediaQuery.of(context).size.width*0.71,
+                                                                  child: TextFormField(
+                                                                    controller: _newEndereco,
+                                                                    maxLines: 2,
+                                                                    enabled: _isEnabled[0],
+                                                                    style: TextStyle(color: Color(0xFFFFB54B)),
+                                                                    textInputAction: TextInputAction.newline,
+                                                                    decoration: const InputDecoration(
+                                                                      isDense: true,
+                                                                      contentPadding: EdgeInsets.only(top: 12, left: 12, right: 12),
+                                                                      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                    ),
+                                                                  ),
+                                                                ),
+
+                                                                IconButton(
+                                                                  icon: Icon(
+                                                                    Icons.drive_file_rename_outline,
+                                                                    color: Color(0xFFFF9B0D),
+                                                                  ),
+                                                                  onPressed: () {
+                                                                    setState(() {
+                                                                      _isEnabled[0] = true;
+                                                                    });
+                                                                  },
+                                                                ),
+                                                              ]
+                                                          ),
+
+                                                    ),
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                                                    Divider(
+                                                      color: Color(0xFFC4C4C4),
+                                                      thickness: 2,
+                                                    ),
+
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
                                                       child: Center(
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              'Horários de Funcionamento:',
+                                                              style: TextStyle(
+                                                                  fontSize: MediaQuery.of(context).size.height*0.026,
+                                                                  fontWeight: FontWeight.w900,
+                                                                  fontStyle: FontStyle.normal,
+                                                                  fontFamily: 'Roboto',
+                                                                  color: Color(0xFFFF9B0D)
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.01),
+                                                    Padding(
+                                                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
                                                         child: Row(
                                                             children: [
                                                               Container(
                                                                 width: MediaQuery.of(context).size.width*0.71,
                                                                 child: TextFormField(
-                                                                  controller: _newEndereco,
-                                                                  maxLines: 2,
-                                                                  enabled: _isEnabled[0],
+                                                                  controller: _hr1,
                                                                   style: TextStyle(color: Color(0xFFFFB54B)),
+                                                                  maxLines: 1,
+                                                                  enabled: _isEnabled[1],
                                                                   textInputAction: TextInputAction.newline,
                                                                   decoration: const InputDecoration(
                                                                     isDense: true,
-                                                                    contentPadding: EdgeInsets.only(top: 12, left: 12, right: 12),
+                                                                    contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
                                                                     border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
                                                                   ),
                                                                 ),
                                                               ),
-
                                                               IconButton(
                                                                 icon: Icon(
                                                                   Icons.drive_file_rename_outline,
@@ -178,45 +244,128 @@ class _TelaContatoState extends State<TelaContato> {
                                                                 ),
                                                                 onPressed: () {
                                                                   setState(() {
-                                                                    _isEnabled[0] = true;
+                                                                    _isEnabled[1] = true;
                                                                   });
                                                                 },
                                                               ),
                                                             ]
-                                                        ),
-                                                      )
-                                                  ),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                                                  Divider(
-                                                    color: Color(0xFFC4C4C4),
-                                                    thickness: 2,
-                                                  ),
+                                                        )
+                                                    ),
 
-                                                  Padding(
-                                                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.29),
-                                                    child: const Text(
-                                                      'Horários de Funcionamento:',
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.w900,
-                                                          fontStyle: FontStyle.normal,
-                                                          fontFamily: 'Roboto',
-                                                          color: Color(0xFFFF9B0D)
+                                                    Padding(
+                                                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
+                                                        child: Row(
+                                                            children: [
+                                                              Container(
+                                                                width: MediaQuery.of(context).size.width*0.71,
+                                                                child: TextFormField(
+                                                                  controller: _hr2,
+                                                                  style: TextStyle(color: Color(0xFFFFB54B)),
+                                                                  maxLines: 1,
+                                                                  enabled: _isEnabled[2],
+                                                                  textInputAction: TextInputAction.newline,
+                                                                  decoration:  InputDecoration(
+                                                                    isDense: true,
+                                                                    contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                                                                    border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                                                                        Radius.circular(5))),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              IconButton(
+                                                                icon: Icon(
+                                                                  Icons.drive_file_rename_outline,
+                                                                  color: Color(0xFFFF9B0D),
+                                                                ),
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    _isEnabled[2] = true;
+                                                                  });
+                                                                },
+                                                              ),
+                                                            ]
+                                                        )
+                                                    ),
+                                                    Padding(
+                                                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
+                                                        child: Row(
+                                                            children: [
+                                                              Container(
+                                                                width: MediaQuery.of(context).size.width*0.71,
+                                                                child: TextFormField(
+                                                                  controller: _hr3,
+                                                                  style: TextStyle(color: Color(0xFFFFB54B)),
+                                                                  maxLines: 1,
+                                                                  enabled: _isEnabled[3],
+                                                                  textInputAction: TextInputAction.newline,
+                                                                  decoration: const InputDecoration(
+                                                                    isDense: true,
+                                                                    contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                                                                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              IconButton(
+                                                                icon: Icon(
+                                                                  Icons.drive_file_rename_outline,
+                                                                  color: Color(0xFFFF9B0D),
+                                                                ),
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    _isEnabled[3] = true;
+                                                                  });
+                                                                },
+                                                              ),
+                                                            ]
+                                                        )
+                                                    ),
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                                                    Divider(
+                                                      color: Color(0xFFC4C4C4),
+                                                      thickness: 2,
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
+                                                      child: Center(
+                                                        child: Row(
+                                                          children: [
+                                                             Text(
+                                                              'Faça seu pedido em:',
+                                                              style: TextStyle(
+                                                                  fontSize: MediaQuery.of(context).size.height*0.026,
+                                                                  fontWeight: FontWeight.w900,
+                                                                  fontStyle: FontStyle.normal,
+                                                                  fontFamily: 'Roboto',
+                                                                  color: Color(0xFFFF9B0D)
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01),
-                                                  Padding(
-                                                      padding: const EdgeInsets.only(left: 25,right: 35),
+
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
                                                       child: Row(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          mainAxisAlignment: MainAxisAlignment.start,
                                                           children: [
+                                                            Icon(
+                                                              MdiIcons.whatsapp,
+                                                              color: Color(0xFFFFB54B),
+                                                              size: 32,
+                                                            ),
                                                             Container(
-                                                              width: MediaQuery.of(context).size.width*0.71,
+                                                              width: 3.0,
+                                                            ),
+                                                            Container(
+                                                              width: MediaQuery.of(context).size.width*0.5,
                                                               child: TextFormField(
-                                                                controller: _hr1,
+                                                                controller: _whats,
                                                                 style: TextStyle(color: Color(0xFFFFB54B)),
                                                                 maxLines: 1,
-                                                                enabled: _isEnabled[1],
+                                                                enabled: _isEnabled[4],
                                                                 textInputAction: TextInputAction.newline,
                                                                 decoration: const InputDecoration(
                                                                   isDense: true,
@@ -232,59 +381,54 @@ class _TelaContatoState extends State<TelaContato> {
                                                               ),
                                                               onPressed: () {
                                                                 setState(() {
-                                                                  _isEnabled[1] = true;
+                                                                  _isEnabled[4] = true;
                                                                 });
                                                               },
                                                             ),
-                                                          ]
-                                                      )
-                                                  ),
-
-                                                  Padding(
-                                                      padding: const EdgeInsets.only(left: 25,right: 35),
-                                                      child: Row(
+                                                          ]),
+                                                    ),
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07, top: MediaQuery.of(context).size.height*0.01),
+                                                      child: Center(
+                                                        child: Row(
                                                           children: [
-                                                            Container(
-                                                              width: MediaQuery.of(context).size.width*0.71,
-                                                              child: TextFormField(
-                                                                controller: _hr2,
-                                                                style: TextStyle(color: Color(0xFFFFB54B)),
-                                                                maxLines: 1,
-                                                                enabled: _isEnabled[2],
-                                                                textInputAction: TextInputAction.newline,
-                                                                decoration:  InputDecoration(
-                                                                  isDense: true,
-                                                                  contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
-                                                                  border: OutlineInputBorder(borderRadius: BorderRadius.all(
-                                                                      Radius.circular(5))),
-                                                                ),
+                                                            Text(
+                                                              'Redes sociais:',
+                                                              style: TextStyle(
+                                                                  fontSize: MediaQuery.of(context).size.height*0.026,
+                                                                  fontWeight: FontWeight.w900,
+                                                                  fontStyle: FontStyle.normal,
+                                                                  fontFamily: 'Roboto',
+                                                                  color: Color(0xFFFF9B0D)
                                                               ),
                                                             ),
-                                                            IconButton(
-                                                              icon: Icon(
-                                                                Icons.drive_file_rename_outline,
-                                                                color: Color(0xFFFF9B0D),
-                                                              ),
-                                                              onPressed: () {
-                                                                setState(() {
-                                                                  _isEnabled[2] = true;
-                                                                });
-                                                              },
-                                                            ),
-                                                          ]
-                                                      )
-                                                  ),
-                                                  Padding(
-                                                      padding: const EdgeInsets.only(left: 25,right: 35),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07),
                                                       child: Row(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          mainAxisAlignment: MainAxisAlignment.start,
                                                           children: [
+                                                            Icon(
+                                                              MdiIcons.facebook,
+                                                              color: Color(0xFFFFB54B),
+                                                              size: 32,
+                                                            ),
                                                             Container(
-                                                              width: MediaQuery.of(context).size.width*0.71,
+                                                              width: 3.0,
+                                                            ),
+                                                            Container(
+                                                              width: MediaQuery.of(context).size.width*0.5,
                                                               child: TextFormField(
-                                                                controller: _hr3,
+                                                                controller: _face,
                                                                 style: TextStyle(color: Color(0xFFFFB54B)),
                                                                 maxLines: 1,
-                                                                enabled: _isEnabled[3],
+                                                                enabled: _isEnabled[5],
                                                                 textInputAction: TextInputAction.newline,
                                                                 decoration: const InputDecoration(
                                                                   isDense: true,
@@ -300,225 +444,105 @@ class _TelaContatoState extends State<TelaContato> {
                                                               ),
                                                               onPressed: () {
                                                                 setState(() {
-                                                                  _isEnabled[3] = true;
+                                                                  _isEnabled[5] = true;
                                                                 });
                                                               },
                                                             ),
-                                                          ]
-                                                      )
-                                                  ),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                                                  Divider(
-                                                    color: Color(0xFFC4C4C4),
-                                                    thickness: 2,
-                                                  ),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-
-                                                  Padding(
-                                                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.43),
-                                                    child: const Text(
-                                                      'Faça seu pedido em:',
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.w900,
-                                                          fontStyle: FontStyle.normal,
-                                                          fontFamily: 'Roboto',
-                                                          color: Color(0xFFFF9B0D)
+                                                          ]),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.07,),
+                                                      child: Row(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          children: [
+                                                            Icon(
+                                                              MdiIcons.instagram,
+                                                              color: Color(0xFFFFB54B),
+                                                              size: 32,
+                                                            ),
+                                                            Container(
+                                                              width: 3.0,
+                                                            ),
+                                                            Container(
+                                                              width: MediaQuery.of(context).size.width*0.5,
+                                                              child: TextFormField(
+                                                                controller: _insta,
+                                                                style: TextStyle(color: Color(0xFFFFB54B)),
+                                                                maxLines: 1,
+                                                                enabled: _isEnabled[6],
+                                                                textInputAction: TextInputAction.newline,
+                                                                decoration: const InputDecoration(
+                                                                  isDense: true,
+                                                                  contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                                                                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            IconButton(
+                                                              icon: Icon(
+                                                                Icons.drive_file_rename_outline,
+                                                                color: Color(0xFFFF9B0D),
+                                                              ),
+                                                              onPressed: () {
+                                                                setState(() {
+                                                                  _isEnabled[6] = true;
+                                                                });
+                                                              },
+                                                            ),
+                                                          ]),
+                                                    ),
+                                                    SizedBox(height: MediaQuery.of(context).size.height*0.025,),
+                                                    Container(
+                                                      height: MediaQuery.of(context).size.height * 0.069,
+                                                      width: MediaQuery.of(context).size.width * 0.8,
+                                                      child: ElevatedButton(
+                                                        onPressed: () async{
+                                                          if(_newEndereco.text == "" || _hr1.text == "" ||
+                                                              _hr2.text == "" || _hr3.text == "" || _face.text == "" || _insta.text == "" || _whats.text == ""){
+                                                            showDialog(
+                                                              context: context,
+                                                              barrierDismissible: true,
+                                                              builder: (BuildContext context) => const AlertDialog(
+                                                                title: Text('Dados incompletos'),
+                                                                content: Text('Todos os campos devem estar preenchidos.'),
+                                                              ),
+                                                            );
+                                                          }else {
+                                                            DocumentReference ref = FirebaseFirestore.instance.collection('PatoBurguer').doc('config');
+                                                            ref.update({
+                                                              'localizacao.endereco': _newEndereco.text,
+                                                              'horario.segSexta': _hr1.text,
+                                                              'horario.sabado': _hr2.text,
+                                                              'horario.domFer': _hr3.text,
+                                                              'redeSoc.face': _face.text,
+                                                              'redeSoc.insta': _insta.text,
+                                                              'whats': _whats.text,
+                                                            });
+                                                            Navigator.of(context).push(
+                                                                MaterialPageRoute(builder: (context) => HomePage())
+                                                            );
+                                                          }
+                                                        },
+                                                        child: Text(
+                                                          'Salvar',
+                                                          style: TextStyle(
+                                                              fontFamily: 'Poppins',
+                                                              fontSize: MediaQuery.of(context).size.width * 0.055,
+                                                              color: Colors.white,
+                                                              fontWeight: FontWeight.w700),
+                                                        ),
+                                                        style: ButtonStyle(
+                                                            backgroundColor:
+                                                            MaterialStateProperty.all<Color>(Color(0xFFFF9B0D)),
+                                                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                                RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.circular(8)))),
                                                       ),
                                                     ),
-                                                  ),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                                                  Row(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                        Container(
-                                                          width: 25.0,
-                                                        ),
-                                                        Icon(
-                                                          MdiIcons.whatsapp,
-                                                          color: Color(0xFFFFB54B),
-                                                          size: 32,
-                                                        ),
-                                                        Container(
-                                                          width: 3.0,
-                                                        ),
-                                                        Container(
-                                                          width: MediaQuery.of(context).size.width*0.5,
-                                                          child: TextFormField(
-                                                            controller: _whats,
-                                                            style: TextStyle(color: Color(0xFFFFB54B)),
-                                                            maxLines: 1,
-                                                            enabled: _isEnabled[4],
-                                                            textInputAction: TextInputAction.newline,
-                                                            decoration: const InputDecoration(
-                                                              isDense: true,
-                                                              contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
-                                                              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        IconButton(
-                                                          icon: Icon(
-                                                            Icons.drive_file_rename_outline,
-                                                            color: Color(0xFFFF9B0D),
-                                                          ),
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              _isEnabled[4] = true;
-                                                            });
-                                                          },
-                                                        ),
-                                                      ]),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.55),
-                                                    child: const Text(
-                                                      'Redes Sociais:',
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.w900,
-                                                          fontStyle: FontStyle.normal,
-                                                          fontFamily: 'Roboto',
-                                                          color: Color(0xFFFF9B0D)
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                                                  Row(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                        Container(
-                                                          width: 25.0,
-                                                        ),
-                                                        Icon(
-                                                          MdiIcons.facebook,
-                                                          color: Color(0xFFFFB54B),
-                                                          size: 32,
-                                                        ),
-                                                        Container(
-                                                          width: 3.0,
-                                                        ),
-                                                        Container(
-                                                          width: MediaQuery.of(context).size.width*0.5,
-                                                          child: TextFormField(
-                                                            controller: _face,
-                                                            style: TextStyle(color: Color(0xFFFFB54B)),
-                                                            maxLines: 1,
-                                                            enabled: _isEnabled[5],
-                                                            textInputAction: TextInputAction.newline,
-                                                            decoration: const InputDecoration(
-                                                              isDense: true,
-                                                              contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
-                                                              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        IconButton(
-                                                          icon: Icon(
-                                                            Icons.drive_file_rename_outline,
-                                                            color: Color(0xFFFF9B0D),
-                                                          ),
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              _isEnabled[5] = true;
-                                                            });
-                                                          },
-                                                        ),
-                                                      ]),
-                                                  Row(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                        Container(
-                                                          width: 25.0,
-                                                        ),
-                                                        Icon(
-                                                          MdiIcons.instagram,
-                                                          color: Color(0xFFFFB54B),
-                                                          size: 32,
-                                                        ),
-                                                        Container(
-                                                          width: 3.0,
-                                                        ),
-                                                        Container(
-                                                          width: MediaQuery.of(context).size.width*0.5,
-                                                          child: TextFormField(
-                                                            controller: _insta,
-                                                            style: TextStyle(color: Color(0xFFFFB54B)),
-                                                            maxLines: 1,
-                                                            enabled: _isEnabled[6],
-                                                            textInputAction: TextInputAction.newline,
-                                                            decoration: const InputDecoration(
-                                                              isDense: true,
-                                                              contentPadding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
-                                                              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        IconButton(
-                                                          icon: Icon(
-                                                            Icons.drive_file_rename_outline,
-                                                            color: Color(0xFFFF9B0D),
-                                                          ),
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              _isEnabled[6] = true;
-                                                            });
-                                                          },
-                                                        ),
-                                                      ]),
-                                                  SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-                                                  Container(
-                                                    height: MediaQuery.of(context).size.height * 0.069,
-                                                    width: MediaQuery.of(context).size.width * 0.8,
-                                                    child: ElevatedButton(
-                                                      onPressed: () async{
-                                                        if(_newEndereco.text == "" || _hr1.text == "" ||
-                                                            _hr2.text == "" || _hr3.text == "" || _face.text == "" || _insta.text == "" || _whats.text == ""){
-                                                          showDialog(
-                                                            context: context,
-                                                            barrierDismissible: true,
-                                                            builder: (BuildContext context) => const AlertDialog(
-                                                              title: Text('Dados incompletos'),
-                                                              content: Text('Todos os campos devem estar preenchidos.'),
-                                                            ),
-                                                          );
-                                                        }else {
-                                                          DocumentReference ref = FirebaseFirestore.instance.collection('PatoBurguer').doc('config');
-                                                          ref.update({
-                                                            'localizacao.endereco': _newEndereco.text,
-                                                            'horario.segSexta': _hr1.text,
-                                                            'horario.sabado': _hr2.text,
-                                                            'horario.domFer': _hr3.text,
-                                                            'redeSoc.face': _face.text,
-                                                            'redeSoc.insta': _insta.text,
-                                                            'whats': _whats.text,
-                                                          });
-                                                          Navigator.of(context).push(
-                                                              MaterialPageRoute(builder: (context) => HomePage())
-                                                          );
-                                                        }
-                                                      },
-                                                      child: Text(
-                                                        'Salvar',
-                                                        style: TextStyle(
-                                                            fontFamily: 'Poppins',
-                                                            fontSize: MediaQuery.of(context).size.width * 0.055,
-                                                            color: Colors.white,
-                                                            fontWeight: FontWeight.w700),
-                                                      ),
-                                                      style: ButtonStyle(
-                                                          backgroundColor:
-                                                          MaterialStateProperty.all<Color>(Color(0xFFFF9B0D)),
-                                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                                              RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.circular(8)))),
-                                                    ),
-                                                  ),
-                                                ]),
-                                          ],
+                                                  ]),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     )
